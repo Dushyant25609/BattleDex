@@ -11,6 +11,7 @@ export default function Pokemon_details() {
 
     const name = useParams().name;
     const navigate = useNavigate();
+    const [loader, setLoader] = useState(true);
     const [data,setData] = useState();
     const [great_data, setG_data ] = useState([]);
     const [ultra_data, setU_data] = useState([]);
@@ -39,9 +40,14 @@ export default function Pokemon_details() {
         navigate(-1); 
     }
     
+    function removeLoader() {
+      setLoader(false);
+    }
+    setTimeout(removeLoader,2000);
 
   return (
     <div className='relative md:h-screen' >
+    {loader && <Loading/>}
       <Navbar/>
       <div className=" px-2 flex flex-col justify-center items-start h-full  py-4 md:justify-center md:items-center md:h-5/6 ">
         <div className= "lg:bg-gray-200 relative backdrop-blur-xl drop-shadow-xl  px-3 py-3 flex flex-col  items-center rounded-xl    gap-4 md:w-11/12 lg:flex-row lg:items-stretch   ">

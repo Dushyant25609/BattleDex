@@ -1,36 +1,15 @@
 import React,{useState,useEffect}  from 'react'
 import pokeball from "./Static/pokeball.png";
 import { Link } from 'react-router-dom';
-import { pokedex_data } from './GetData';
-import Infinite_Scroll from './Infinite_Scroll';
 import Loading from './Loading';
 
 function Home() {
-  const [api_data, setData] = useState([]); 
-  
-    
-    async function getData(){
-        let response = await pokedex_data();
-        setData(response.data.results);
-    }
-    useEffect(() =>{
-        getData();  
-    },[]);
-
-    const pokemon_pos = ["justify-center", "justify-start"];
-
-    function getRandomString(array) {
-      const randomIndex = Math.floor(Math.random() * array.length);
-      return array[randomIndex];
-    }
-
-    let pos = getRandomString(pokemon_pos);
 
     const [loader, setLoader] = useState(true);
     function removeLoader() {
       setLoader(false);
     }
-    setTimeout(removeLoader,3000);
+    setTimeout(removeLoader,10000);
 
   return  (
     <>

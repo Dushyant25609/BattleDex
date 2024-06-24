@@ -1,16 +1,24 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Navbar from "./Navbar";
 import {Link} from 'react-router-dom';
 import greatball from "./Static/great_ball.png";
 import ultraball from "./Static/ultra_ball.png";
 import masterball from "./Static/MASTERBALL.png";
+import Loading from './Loading';
 
 
 
 export default function Ranking() {
-  
+  const [loader, setLoader] = useState(true);
+
+  function removeLoader() {
+    setLoader(false);
+  }
+  setTimeout(removeLoader,2000);
+
   return (
     <div className='h-screen flex flex-col gap-8  relative z-10 ' >
+      {loader && <Loading/>}
       <Navbar/>
       <div className="flex flex-col h-full justify-around ">
         <div className="flex px-4 py-4 h-11/12 items-center">

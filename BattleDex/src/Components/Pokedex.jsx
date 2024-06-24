@@ -11,6 +11,7 @@ import Loading from './Loading';
 
 export default function Pokedex() { 
     const [api_data, setData] = useState([]); 
+    const [loader, setLoader] = useState(true);
     
     async function getData(){
         let response = await pokedex_data();
@@ -31,11 +32,15 @@ export default function Pokedex() {
     function handleQuery(e){
         setQuery(e.target.value);
     }
+    function removeLoader() {
+      setLoader(false);
+    }
+    setTimeout(removeLoader,5000);
 
 
   return (
     <div className='relative z-10 gap-4 flex flex-col h-screen overflow-hidden ' >
-      { !data && <Loading/>}
+      {loader && <Loading/>}
       <Navbar/>
       <div className="flex flex-col px-4  py-2 gap-4 h-full justify-start lg:gap-6  ">
         <input onChange={handleQuery} value={query} type="search"name="" id="" className=" px-8 py-2 rounded-lg  md:w-1/2 self-center w-11/12 " placeholder='Search' />

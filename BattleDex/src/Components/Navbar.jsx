@@ -13,7 +13,7 @@ export default function Navbar() {
     }
   return (
     <>
-    <div className={"fixed h-screen w-full bg-black flex flex-col items-center py-16 px-4 gap-36 transition-all " + menu}>
+    <div className={"fixed z-30 h-screen w-full bg-black flex flex-col items-center py-16 px-4 gap-36 transition-all " + menu}>
         <ImCross onClick={handleMenu} className='text-3xl text-white ' />
         <div className="flex flex-col gap-6">
             <Link to="/" className="text-white text-4xl hover:text-primary  ">Home</Link>

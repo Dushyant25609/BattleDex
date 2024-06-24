@@ -42,19 +42,7 @@ function Home() {
                 B<span>a</span>ttléDéx
             </h1>
             <img src={pokeball} alt="Pokeball" className="min-w-0 w-5/12 self-center absolute inset-y-0 top-20 md:w-4/12 lg:w-3/12 xl:w-1/5 xl:top-25 2xl:w-2/12 " />
-            <div className={"hidden md:flex absolute overflow-hidden lg:h-40 lg:w-40  lg:right-28 md:h-36 md:w-36 md:right-16   items-center xl:h-80 xl:w-80 top-1/3 xl:right-40 px-4 py-2 " + pos}>
-        {api_data.map(function(item){
-                return (
-                <Infinite_Scroll
-                key={item.name}
-                name={item.name}
-                url={item.url}
-                />
-            );
-            }
-        )}
-
-        </div>
+            
             <h1 className="text-xs self-end flex wrap w-3/5 md:w-2/5 lg:text-lg xl:text-3xl xl:w-2/5 2xl:text-4xl  ">
             Find the best Pokémon moves and counter Pokémon for your Pokémon  Go team
             </h1>

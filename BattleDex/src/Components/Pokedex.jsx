@@ -35,7 +35,7 @@ export default function Pokedex() {
     function removeLoader() {
       setLoader(false);
     }
-    setTimeout(removeLoader,5000);
+    setTimeout(removeLoader,10000);
 
 
   return (

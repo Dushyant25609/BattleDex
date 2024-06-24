@@ -6,10 +6,12 @@ import Loading from './Loading';
 function Home() {
 
     const [loader, setLoader] = useState(true);
+    let time = 10000;
     function removeLoader() {
       setLoader(false);
+      time = 1000;
     }
-    setTimeout(removeLoader,10000);
+    setTimeout(removeLoader,time);
 
   return  (
     <>

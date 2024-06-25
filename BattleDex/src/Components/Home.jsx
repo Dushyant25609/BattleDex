@@ -3,7 +3,6 @@ import pokeball from "./Static/pokeball.png";
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 
-let time = 10000;
 
 function Home() {
 
@@ -12,10 +11,9 @@ function Home() {
   
     console.log(time);
     function removeLoader() {
-      time=1000;
       setLoader(false);
     }
-    setTimeout(removeLoader,time);
+    setTimeout(removeLoader,1000);
 
   return  (
     <>

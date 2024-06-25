@@ -9,7 +9,6 @@ function Home() {
     const [loader, setLoader] = useState(true);
 
   
-    console.log(time);
     function removeLoader() {
       setLoader(false);
     }

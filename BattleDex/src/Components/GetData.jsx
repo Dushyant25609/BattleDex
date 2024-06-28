@@ -1,6 +1,6 @@
-import great_league from "./Data/great-league_ranks.json"
-import ultra_league from "./Data/ultra-league_ranks.json"
-import master_league from "./Data/master-league_ranks.json"
+import great_league from "../../public/Data/great-league_ranks.json"
+import ultra_league from "../../public/Data/ultra-league_ranks.json"
+import master_league from "../../public/Data/master-league_ranks.json"
 import axios from "axios"
 
 export function Great_League_Data(){

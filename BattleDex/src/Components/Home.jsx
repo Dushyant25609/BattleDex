@@ -1,5 +1,5 @@
 import React,{useState,useEffect}  from 'react'
-import pokeball from "./Static/pokeball.png";
+import pokeball from "/Static/pokeball.png";
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 

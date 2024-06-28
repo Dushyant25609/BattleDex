@@ -1,5 +1,5 @@
 import React from 'react'
-import bg from './Static/bg-3.mp4'
+import bg from '/Static/bg-3.mp4'
 
 export default function Background() {
   return (

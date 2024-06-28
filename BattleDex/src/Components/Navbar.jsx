@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import pokeball from "./Static/pokeball.png";
+import pokeball from "/Static/pokeball.png";
 import { IoMdMenu } from "react-icons/io";
 import { ImCross } from "react-icons/im";
 import {Link} from 'react-router-dom';

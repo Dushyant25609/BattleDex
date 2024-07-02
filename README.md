@@ -62,4 +62,4 @@ git push origin feature-branch
 5. Open a pull request against the main repository's main branch.
 
 ## Contact
-For inquiries or support, please contact [dushyant25609l@gmail.com].
+For inquiries or support, please contact dushyant25609l@gmail.com.

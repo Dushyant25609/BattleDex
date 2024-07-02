@@ -1,5 +1,7 @@
 # BattleDex - Your Ultimate Pokémon Go Companion
 
+![BattleDex Logo](BattleDex/public/Static/meta_img.png)
+
 ## Table of Contents
 
 - [Introduction](#introduction)

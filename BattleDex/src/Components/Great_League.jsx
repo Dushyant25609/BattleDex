@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import Table_row from './Table_row';
 import { Link } from 'react-router-dom';
-import greatball from "/Static/great_ball.png";
-import ultraball from "/Static/ultra_ball.png";
-import masterball from "/Static/MASTERBALL.png";
+import greatball from "/Static/great_ball.webp";
+import ultraball from "/Static/ultra_ball.webp";
+import masterball from "/Static/MASTERBALL.webp";
 import { Great_League_Data } from './GetData';
 
 import { motion } from 'framer-motion';

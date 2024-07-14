@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from "./Navbar";
 import { Link } from 'react-router-dom';
-import greatball from "/Static/great_ball.png";
-import ultraball from "/Static/ultra_ball.png";
-import masterball from "/Static/MASTERBALL.png";
+import greatball from "/Static/great_ball.webp";
+import ultraball from "/Static/ultra_ball.webp";
+import masterball from "/Static/MASTERBALL.webp";
 import Loading from './Loading';
 import { motion } from 'framer-motion';
 

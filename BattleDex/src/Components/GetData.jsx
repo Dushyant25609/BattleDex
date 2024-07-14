@@ -16,7 +16,7 @@ export function Ultra_League_Data(){
 export function Master_League_Data(){
     let data = master_league;
     return data;
-}
+}        
 
 export function pokedex_data() {
     return axios.get('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');      

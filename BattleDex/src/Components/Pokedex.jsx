@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import Grid from './Grid';
 import { pokedex_data } from './GetData';
@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 let time = 10000;
 
-export default function Pokedex() {
+function Pokedex() {
   const [api_data, setData] = useState([]);
   const [loader, setLoader] = useState(true);
 
@@ -85,3 +85,5 @@ export default function Pokedex() {
     </motion.div>
   );
 }
+
+export default memo(Pokedex);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import { useParams } from 'react-router';
@@ -8,33 +8,29 @@ import { useNavigate } from 'react-router-dom';
 import { MdOutlineArrowBackIos } from "react-icons/md";
 
 export default function Pokemon_details({ giveType }) {
-    const name = useParams().name;
+    const { name } = useParams();
     const navigate = useNavigate();
-    const [data, setData] = useState();
-    const [great_data, setG_data] = useState([]);
-    const [ultra_data, setU_data] = useState([]);
-    const [master_data, setM_data] = useState([]);
+    const [data, setData] = useState(null);
+    const [greatData, setGreatData] = useState([]);
+    const [ultraData, setUltraData] = useState([]);
+    const [masterData, setMasterData] = useState([]);
 
-    async function get_data() {
-        let res = await get_pokemon_data(name);
+    const fetchData = useCallback(async () => {
+        const res = await get_pokemon_data(name);
         setData(res);
-    }
+    }, [name]);
 
     useEffect(() => {
-        get_data();
-        setG_data(Great_League_Data());
-        setU_data(Ultra_League_Data());
-        setM_data(Master_League_Data());
-    }, []);
+        fetchData();
+        setGreatData(Great_League_Data());
+        setUltraData(Ultra_League_Data());
+        setMasterData(Master_League_Data());
+    }, [fetchData]);
 
-    if (!data) {
-        return <Loading />;
-    }
+    const type1 = data?.types?.[0]?.type?.name || '';
+    const type2 = data?.types?.[1]?.type?.name || '';
 
-    let type_1 = data.types['0'] ? data.types['0'].type.name : false;
-    let type_2 = data.types['1'] ? data.types['1'].type.name : false;
-
-    const bgClasses = {
+    const bgClasses = useMemo(() => ({
         normal: "bg-normal-Dark",
         fire: "bg-fire-Dark",
         water: "bg-water-Dark",
@@ -53,18 +49,20 @@ export default function Pokemon_details({ giveType }) {
         dragon: "bg-dragon-Dark",
         dark: "bg-dark-Dark",
         fairy: "bg-fairy-Lite",
-    };
+    }), []);
 
-    giveType(type_1);
+    useEffect(() => {
+        giveType(type1);
+    }, [type1, giveType]);
 
-    function goBack() {
+    const goBack = useCallback(() => {
         navigate(-1);
-    }
+    }, [navigate]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { duration: 1.5 } },
-        exit: { opacity: 0, transition: { duration: 1.5} },
+        exit: { opacity: 0, transition: { duration: 1.5 } },
     };
 
     const itemVariants = {
@@ -75,7 +73,32 @@ export default function Pokemon_details({ giveType }) {
     const imgVariant = {
         hidden: { x: 100, opacity: 0 },
         visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
+    };
+
+    if (!data) {
+        return <Loading />;
     }
+
+    const renderData = (leagueData, bgColor) => {
+        return leagueData.map(item => {
+            const pName = item.Pokemon.toLowerCase();
+            if (pName === data.name.toLowerCase()) {
+                return (
+                    <motion.div
+                        key={item.Rank}
+                        className={`${bgColor} relative z-20 rounded-md grid grid-cols-7 text-xs md:text-base xl:text-xl 2xl:text-2xl items-center px-1 py-3 gap-x-2`}
+                        variants={itemVariants}
+                    >
+                        <p className="justify-self-center">{item.Rank}</p>
+                        <p className="col-span-2">{item["Fast Move"]}</p>
+                        <p className="col-span-2">{item["Charged Move 1"]}</p>
+                        <p className="col-span-2">{item["Charged Move 2"] || "None"}</p>
+                    </motion.div>
+                );
+            }
+            return null;
+        });
+    };
 
     return (
         <motion.div
@@ -97,81 +120,32 @@ export default function Pokemon_details({ giveType }) {
                     </motion.button>
                     <motion.img
                         src={data.sprites.other["official-artwork"].front_default}
-                        alt={data.name + " Pokemon"}
+                        alt={`${data.name} Pokemon`}
                         className="w-11/12 md:w-1/3 relative z-20 lg:w-1/2"
                         variants={imgVariant}
                     />
                     <motion.div className="flex flex-col items-center gap-y-2 w-full md:w-2/3 md:justify-evenly rounded-lg px-2 py-2" variants={itemVariants}>
                         <div className="flex flex-col gap-2">
-                            <h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-Max px-4 py-2 font-bold text-stroke-1 xl:text-stroke-3 text-white font-heading_2">{data.name.toUpperCase()}</h1>
+                            <h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-Max px-4 py-2 font-bold text-stroke-1 xl:text-stroke-3 text-white font-heading_2">
+                                {data.name.toUpperCase()}
+                            </h1>
                             <div className="flex items-center self-center gap-4">
-                                {type_1 && (
-                                    <div className={"lg:py-2 px-4 xl:text-5xl md:text-xl lg:text-2xl text-stroke-1 border-2 xl:text-stroke-2 lg:border-4 border-black rounded-full text-white font-heading_2 " + bgClasses[type_1]}>
-                                        <p>{type_1.toUpperCase()}</p>
+                                {type1 && (
+                                    <div className={`lg:py-2 px-4 xl:text-5xl md:text-xl lg:text-2xl text-stroke-1 border-2 xl:text-stroke-2 lg:border-4 border-black rounded-full text-white font-heading_2 ${bgClasses[type1]}`}>
+                                        <p>{type1.toUpperCase()}</p>
                                     </div>
                                 )}
-                                {type_2 && (
-                                    <div className={"lg:py-2 px-4 xl:text-5xl md:text-xl lg:text-2xl text-stroke-1 border-2 xl:text-stroke-2 lg:border-4 border-black rounded-full text-white font-heading_2 " + bgClasses[type_2]}>
-                                        <p>{type_2.toUpperCase()}</p>
+                                {type2 && (
+                                    <div className={`lg:py-2 px-4 xl:text-5xl md:text-xl lg:text-2xl text-stroke-1 border-2 xl:text-stroke-2 lg:border-4 border-black rounded-full text-white font-heading_2 ${bgClasses[type2]}`}>
+                                        <p>{type2.toUpperCase()}</p>
                                     </div>
                                 )}
                             </div>
                         </div>
-                        <div className="mt-2p-2 flex flex-col gap-4 rounded-lg w-9/12 md:w-9/12 md:shadow-none">
-                            {great_data.map((item) => {
-                                let p_name = item.Pokemon.toLowerCase();
-                                if (p_name === data.name) {
-                                    return (
-                                        <motion.div
-                                            key={item.Rank}
-                                            className="bg-blue-200 relative z-20 rounded-md grid grid-cols-7 text-xs md:text-base xl:text-xl 2xl:text-2xl items-center px-1 py-3 gap-x-2"
-                                            variants={itemVariants}
-                                        >
-                                            <p className="justify-self-center">{item.Rank}</p>
-                                            <p className="col-span-2">{item["Fast Move"]}</p>
-                                            <p className="col-span-2">{item["Charged Move 1"]}</p>
-                                            <p className="col-span-2">{item["Charged Move 2"] || "hi"}</p>
-                                        </motion.div>
-                                    );
-                                }
-                                return null;
-                            })}
-                            {ultra_data.map((item) => {
-                                let p_name = item.Pokemon.toLowerCase();
-                                if (p_name === data.name) {
-                                    return (
-                                        <motion.div
-                                            key={item.Rank}
-                                            className="bg-yellow-100 relative z-20 rounded-md grid grid-cols-7 text-xs px-1 md:text-base xl:text-xl 2xl:text-2xl items-center py-3 gap-x-2"
-                                            variants={itemVariants}
-                                        >
-                                            <p className="justify-self-center">{item.Rank}</p>
-                                            <p className="col-span-2">{item["Fast Move"]}</p>
-                                            <p className="col-span-2">{item["Charged Move 1"]}</p>
-                                            <p className="col-span-2">{item["Charged Move 2"] || "None"}</p>
-                                        </motion.div>
-                                    );
-                                }
-                                return null;
-                            })}
-                            {master_data.map((item) => {
-                                let p_name = item.Pokemon.toLowerCase();
-                                if (p_name === data.name) {
-                                    return (
-                                        <motion.div
-                                            key={item.Rank}
-                                            className="bg-purple-300 relative z-20 rounded-md grid grid-cols-7 text-xs px-1 md:text-base xl:text-xl 2xl:text-2xl items-center py-3 gap-x-2"
-                                            variants={itemVariants}
-                                        >
-                                            <p className="justify-self-center">{item.Rank}</p>
-                                            <p className="col-span-2">{item["Fast Move"]}</p>
-                                            <p className="col-span-2">{item["Charged Move 1"]}</p>
-                                            <p className="col-span-2">{item["Charged Move 2"] || "None"}</p>
-                                        </motion.div>
-                                    );
-                                }
-                                return null;
-                            })}
+                        <div className="mt-2 p-2 flex flex-col gap-4 rounded-lg w-9/12 md:w-9/12 md:shadow-none">
+                            {renderData(greatData, 'bg-blue-200')}
+                            {renderData(ultraData, 'bg-yellow-100')}
+                            {renderData(masterData, 'bg-purple-300')}
                         </div>
                     </motion.div>
                 </div>

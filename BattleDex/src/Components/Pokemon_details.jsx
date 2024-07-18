@@ -121,7 +121,7 @@ export default function Pokemon_details({ giveType }) {
                     <motion.img
                         src={data.sprites.other["official-artwork"].front_default}
                         alt={`${data.name} Pokemon`}
-                        className="w-11/12 md:w-1/3 relative z-20 lg:w-1/2"
+                        className="w-7/12 md:w-1/3 relative z-20 lg:w-1/2"
                         variants={imgVariant}
                     />
                     <motion.div className="flex flex-col items-center gap-y-2 w-full md:w-2/3 md:justify-evenly rounded-lg px-2 py-2" variants={itemVariants}>
@@ -143,6 +143,11 @@ export default function Pokemon_details({ giveType }) {
                             </div>
                         </div>
                         <div className="mt-2 p-2 flex flex-col gap-4 rounded-lg w-9/12 md:w-9/12 md:shadow-none">
+                        <div className='p-2 bg-black text-white  justify-items-center xl:justify-items-start md:font-semibold text-xs md:text-lg  xl:text-2xl grid grid-cols-7 rounded-lg'>
+                            <p >Rank</p>
+                            <p className='col-span-3 xl:col-span-2 xl:justify-self-start' >Fast Move</p>
+                            <p className='col-span-3 xl:col-span-4' >Charged Move</p>
+                        </div>
                             {renderData(greatData, 'bg-blue-200')}
                             {renderData(ultraData, 'bg-yellow-100')}
                             {renderData(masterData, 'bg-purple-300')}

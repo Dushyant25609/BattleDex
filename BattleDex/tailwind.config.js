@@ -1,4 +1,3 @@
-import Infinite_Scroll from './src/Components/Infinite_Scroll';
 
 /** @type {import('tailwindcss').Config} */
 export default {

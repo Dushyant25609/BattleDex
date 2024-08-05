@@ -102,15 +102,15 @@ export default function Pokemon_details({ giveType }) {
 
     return (
         <motion.div
-            className="relative md:h-screen"
+            className="relative h-1/5 min-h-0 flex flex-col gap-4"
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={containerVariants}
         >
             <Navbar />
-            <div className="px-2 flex flex-col justify-center items-start h-full py-4 md:justify-center md:items-center md:h-5/6">
-                <div className="relative px-3 py-3 flex flex-col items-center gap-4 md:w-11/12 lg:flex-row lg:items-stretch">
+            <div className="px-2 flex flex-col justify-center items-start h-full py-4 md:justify-center md:items-center md:h-5/6 min-h-0">
+                <div className="relative px-3 py-3 flex flex-col items-center gap-4 md:w-11/12 lg:flex-row lg:items-stretch min-h-0">
                     <motion.button
                         onClick={goBack}
                         className="absolute -top-5 text-md self-center mt-4 left-8 md:left-32 lg:left-4 md:text-2xl lg:text-4xl"
@@ -121,7 +121,7 @@ export default function Pokemon_details({ giveType }) {
                     <motion.img
                         src={data.sprites.other["official-artwork"].front_default}
                         alt={`${data.name} Pokemon`}
-                        className="w-7/12 md:w-1/3 relative z-20 lg:w-1/2"
+                        className="w-7/12 md:w-1/3 relative z-20 lg:w-1/2 min-h-0"
                         variants={imgVariant}
                     />
                     <motion.div className="flex flex-col items-center gap-y-2 w-full md:w-2/3 md:justify-evenly rounded-lg px-2 py-2" variants={itemVariants}>

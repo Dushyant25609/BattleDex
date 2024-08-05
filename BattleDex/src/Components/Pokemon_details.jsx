@@ -121,12 +121,12 @@ export default function Pokemon_details({ giveType }) {
                     <motion.img
                         src={data.sprites.other["official-artwork"].front_default}
                         alt={`${data.name} Pokemon`}
-                        className="w-7/12 md:w-1/3 relative z-20 lg:w-1/2 min-h-0"
+                        className="w-7/12 md:w-1/3 relative z-20 lg:w-1/3 min-h-0"
                         variants={imgVariant}
                     />
                     <motion.div className="flex flex-col items-center gap-y-2 w-full md:w-2/3 md:justify-evenly rounded-lg px-2 py-2" variants={itemVariants}>
                         <div className="flex flex-col gap-2">
-                            <h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-Max px-4 py-2 font-bold text-stroke-1 xl:text-stroke-3 text-white font-heading_2">
+                            <h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl px-4 py-2 font-bold text-stroke-1 xl:text-stroke-3 text-white font-heading_2">
                                 {data.name.toUpperCase()}
                             </h1>
                             <div className="flex items-center self-center gap-4">

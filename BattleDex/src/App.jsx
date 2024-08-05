@@ -17,7 +17,7 @@ function App() {
   }
 
   return (
-    <div className=''>
+    <div className='overflow-hidden'>
       <Background type={type} />
       <Routes>
         <Route path='/' element={<Home/>}/>

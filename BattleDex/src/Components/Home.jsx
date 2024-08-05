@@ -23,9 +23,9 @@ function Home() {
             <h1 className="font-pokemon text-logo_primary text-stroke-2 text-stroke-logo_secondary text-5xl md:text-8xl md:text-stroke-3  xl:text-9xl 2xl:text-10xl ">
                 B<span>a</span>ttléDéx
             </h1>
-            <img src={pokeball} alt="Pokeball" className="min-w-0 w-5/12 self-center absolute inset-y-0 top-20 md:w-4/12 lg:w-3/12 xl:w-1/5 xl:top-25 2xl:w-2/12 " />
+            <img src={pokeball} alt="Pokeball" className="min-w-0 w-2/12 self-center absolute inset-y-0 top-20 md:w-2/12 lg:w-1/12  xl:top-25 " />
             
-            <h1 className="text-xs self-end flex wrap w-3/5 md:w-2/5 lg:text-lg xl:text-3xl xl:w-2/5 2xl:text-4xl  ">
+            <h1 className="text-xs self-end flex wrap w-3/5 md:w-2/5 lg:text-lg xl:text-3xl xl:w-2/5 2xl:text-4xl">
             Find the best Pokémon moves and counter Pokémon for your Pokémon  Go team
             </h1>
         </div>
